@@ -11,11 +11,10 @@ const NavLinks = [
 
 export default function Navbar() {
     return (
-        <header className="fixed top-0 left-0 right-0 z-50 bg-white  shadow-md ">
+        <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md px-6">
             <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-                <h1 className="font-bold text-lg">
-                    <span className="text-primary">Sew</span>Sphere
-                </h1>
+                    <img src="/images/logo2.png" alt="SewSphere Logo" />
+
 
                 <nav className="hidden md:flex gap-6 text-sm">
                     {NavLinks.map((link, index) => {

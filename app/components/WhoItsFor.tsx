@@ -15,7 +15,7 @@ const sections = [
 
 export default function WhoItsFor() {
   return (
-    <section id="who" className="py-16 container mx-auto px-4">
+    <section id="who" className="py-16 container mx-auto px-6">
       <div className="flex items-center justify-center gap-4 mb-12">
         <span className="h-px w-24 bg-gray-300 py-[1px]" />
 
@@ -26,11 +26,11 @@ export default function WhoItsFor() {
         <span className="h-px w-24 bg-gray-300 py-[1px]" />
       </div>
 
-      <main className="grid lg:grid-cols-2 gap-6">
+      <main className="grid lg:grid-cols-2 gap-8">
         {sections.map((section, index) => (
           <div
             key={index}
-            className="mb-12 relative h-[430px] md:h-[400px] overflow-hidden rounded-lg border border-[#C76B4A] shadow-[0_8px_16px_0_rgba(235,157,128,0.25)]"
+            className="mb-12 relative h-[400px] sm:h-[370px] overflow-hidden rounded-lg border border-[#C76B4A] shadow-[0_8px_16px_0_rgba(235,157,128,0.25)]"
           >
             <video
               autoPlay
@@ -46,11 +46,11 @@ export default function WhoItsFor() {
             <div className="absolute inset-0 bg-black/60"></div>
 
             {/* texts */}
-            <div className="relative p-4 md:p-6 flex flex-col gap-4 md:gap-6">
-              <h2 className="text-primary text-2xl font-medium mb-4 ">
+            <div className="relative p-4 md:p-6 flex flex-col gap-4 sm:gap-6">
+              <h2 className="text-primary text-2xl font-medium ">
                 {section.title}
               </h2>
-              <p className="text-white text-[36px] md:text-[40px] leading-tight font-semibold mb-2 md:w-[85%]">
+              <p className="text-white text-[34px] sm:text-[40px] md:text-[46px] leading-tight font-semibold md:w-[80%]">
                 {section.text}
               </p>
               <p className="text-[#F5EFE6] text-[20px] leading-tight">

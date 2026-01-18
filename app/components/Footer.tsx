@@ -16,6 +16,7 @@ export default function Footer() {
   return (
     <footer className="pt-8 px-6 md:px-12 container mx-auto">
       <section className="flex flex-col gap-6 md:flex-row md:justify-between">
+          
           {/* Left side: */}
           <div className=" space-y-8">
             <img src="/images/logo2.png" alt="SewSphere Logo" />
@@ -23,6 +24,7 @@ export default function Footer() {
               Building trust in custom fashion through clarity, structure, and
               transparency. For designers and clients who deserve better systems.
             </p>
+
             {/* Social media links */}
             <div className="flex gap-4">
               {socialLinks.map(({ id, Icon, href }) => (
@@ -39,6 +41,7 @@ export default function Footer() {
               ))}
             </div>
           </div>
+
           {/* Right side */}
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-20">
             <div className="flex flex-col gap-4">
@@ -46,6 +49,7 @@ export default function Footer() {
               <a href="#why" className="hover:text-[#C76B4A] hover:underline transition-colors duration-300">Why SewSphere</a>
               <a href="#what" className="hover:text-[#C76B4A] hover:underline transition-colors duration-300 ">What We're Building</a>
             </div>
+
             <div className="flex flex-col gap-4">
               <h4 className="font-bold text-[#C76B4A] text-2xl">Connect With Us</h4>
               <a href="mailto:hello@sewsphere.com" className="flex gap-2 items-center hover:text-[#C76B4A] hover:underline transition-colors duration-300"><CiMail /> hello@sewsphere.com</a>

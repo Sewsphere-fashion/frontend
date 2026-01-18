@@ -1,6 +1,6 @@
 export default function CTA() {
   return (
-    <section className="relative bg-[#1E0801] text-white py-6 md:py-20 text-center px-4 overflow-hidden">
+    <section className="relative bg-[#1E0801] text-white py-12 text-center px-4 overflow-hidden">
 
         {/* BG Image */}
       <div className="absolute inset-0 bg-[url('/images/cta-bg.png')] bg-cover bg-center opacity-10 pointer-events-none"></div>

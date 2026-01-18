@@ -31,7 +31,7 @@ const items = [
 
 export default function WhySection() {
     return (
-        <section id="why" className="py-8">
+        <section id="why" className="py-8 px-6">
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-center gap-4 mb-12">
                     <span className="h-px w-24 bg-gray-300 py-[1px]" />
