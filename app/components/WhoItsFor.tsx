@@ -1,59 +1,65 @@
+const sections = [
+  {
+    title: "For Clients",
+    source: "/videos/whoItsFor1.mp4",
+    text: "Order custom and ready-made fashion with confidence",
+    desc: "Browse verified designers, share your vision, and track your order from brief to delivery. No more stress, no more uncertainty.",
+  },
+  {
+    title: "For Designers",
+    source: "/videos/whoItsFor2.mp4",
+    text: "Focus on craft, not chaos",
+    desc: "Get matched with serious clients, receive clear briefs, and get paid on time. Build your reputation on a platform that values your work.",
+  },
+];
+
 export default function WhoItsFor() {
   return (
-    <section className="py-16">
-      <div className="container mx-auto px-4 grid md:grid-cols-2 gap-6">
+    <section id="who" className="py-16 container mx-auto px-4">
+      <div className="flex items-center justify-center gap-4 mb-12">
+        <span className="h-px w-24 bg-gray-300 py-[1px]" />
 
-        {/* Box 1 */}
-        <div
-          className="relative h-[320px] rounded-xl overflow-hidden bg-cover bg-center"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('https://images.unsplash.com/photo-1520975916090-3105956dac38')",
-          }}
-        >
-          {/* Fixed label */}
-          <p className="absolute top-6 left-6 z-20 text-primary text-[18px] font-medium">
-            For Clients
-          </p>
+        <h3 className="text-2xl font-medium text-center whitespace-nowrap">
+          Who It's For
+        </h3>
 
-          <div className="relative z-10 p-6 pt-12 flex flex-col justify-center h-full">
-            <h3 className="text-white text-[45px] leading-[56px] font-semibold mb-2">
-              Order custom and ready-made fashion with confidence
-            </h3>
-            <p className="text-gray-200 text-[20px] leading-[32px]">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Aliquid ea non fugit porro quam
-              delectus nihil earum ipsa facilis iure.
-            </p>
-          </div>
-        </div>
-
-        {/* Box 2 */}
-        <div
-          className="relative h-[320px] rounded-xl overflow-hidden bg-cover bg-center"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('https://images.unsplash.com/photo-1556905055-8f358a7a47b2')",
-          }}
-        >
-          {/* Fixed label */}
-          <p className="absolute top-6 left-6 z-20 text-primary text-[18px] font-medium">
-            For Designers
-          </p>
-
-          <div className="relative z-10 p-6 flex flex-col justify-center h-full">
-            <h3 className="text-white text-[45px] leading-[56px] font-semibold mb-2">
-              Focus on craft, not chaos
-            </h3>
-            <p className="text-gray-200 text-[20px] leading-[32px]">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Aliquid ea non fugit porro quam
-              delectus nihil earum ipsa facilis iure.
-            </p>
-          </div>
-        </div>
-
+        <span className="h-px w-24 bg-gray-300 py-[1px]" />
       </div>
+
+      <main className="grid lg:grid-cols-2 gap-6">
+        {sections.map((section, index) => (
+          <div
+            key={index}
+            className="mb-12 relative h-[430px] md:h-[400px] overflow-hidden rounded-lg border border-[#C76B4A] shadow-[0_8px_16px_0_rgba(235,157,128,0.25)]"
+          >
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+            >
+              <source src={section.source} type="video/mp4" />
+            </video>
+
+            {/* overlay */}
+            <div className="absolute inset-0 bg-black/60"></div>
+
+            {/* texts */}
+            <div className="relative p-4 md:p-6 flex flex-col gap-4 md:gap-6">
+              <h2 className="text-primary text-2xl font-medium mb-4 ">
+                {section.title}
+              </h2>
+              <p className="text-white text-[36px] md:text-[40px] leading-tight font-semibold mb-2 md:w-[85%]">
+                {section.text}
+              </p>
+              <p className="text-[#F5EFE6] text-[20px] leading-tight">
+                {section.desc}
+              </p>
+            </div>
+          </div>
+        ))}
+      </main>
     </section>
-  )
+  );
 }

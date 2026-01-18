@@ -1,31 +1,37 @@
-import { ArrowBigDownDash } from "lucide-react"
+import { Package } from "lucide-react"
+import { VscWorkspaceUntrusted } from "react-icons/vsc";
+import { TbMessage2Off } from "react-icons/tb";
+import { PiTreeStructureLight } from "react-icons/pi";
+
+
+
 
 const items = [
     {
-        icon: ArrowBigDownDash,
+        icon: VscWorkspaceUntrusted,
         title: "Lack of Trust",
-        desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores rerum repudiandae aperiam.",
+        desc: "Clients fear paying without certainty of delivery or quality.",
     },
     {
-        icon: ArrowBigDownDash,
+        icon: TbMessage2Off,
         title: "Poor Communication",
-        desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores rerum repudiandae aperiam.",
+        desc: "Measurements, expectations, and updated are often unclear or scattered.",
     },
     {
-        icon: ArrowBigDownDash,
+        icon: PiTreeStructureLight,
         title: "No Structure",
-        desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores rerum repudiandae aperiam.",
+        desc: "Payments, timelines break confidence on both sides.",
     },
     {
-        icon: ArrowBigDownDash,
+        icon: Package,
         title: "Delivery Stress",
-        desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores rerum repudiandae aperiam.",
+        desc: "Delays and uncertainty break confidence on both sides.",
     },
 ]
 
 export default function WhySection() {
     return (
-        <section className="py-8">
+        <section id="why" className="py-8">
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-center gap-4 mb-12">
                     <span className="h-px w-24 bg-gray-300 py-[1px]" />
@@ -56,6 +62,7 @@ export default function WhySection() {
                                     <h4 className="font-medium text-sm leading-snug">
                                         {item.title}
                                     </h4>
+                                    
                                 </div>
 
                                 {/* Description */}
