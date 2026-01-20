@@ -53,9 +53,9 @@ const items = [
 
 export default function HowItWorks() {
     return (
-        <section id="how" className="py-12 px-6">
+        <section id="how" className="py-6 px-6">
             <div className="container mx-auto px-4">
-                <div className="flex items-center justify-center gap-4 mb-12">
+                <div className="flex items-center justify-center gap-4 mb-6">
                     <span className="h-px w-24 bg-gray-300 py-[1px]" />
 
                     <h3 className="text-2xl font-medium text-center whitespace-nowrap">

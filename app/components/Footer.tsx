@@ -8,13 +8,13 @@ const socialLinks = [
   { id: "linkedin", Icon: SlSocialLinkedin, href: "#" },
   { id: "instagram", Icon: FaInstagram, href: "#" },
   { id: "tiktok", Icon: FaTiktok, href: "#" },
-  { id: "facebook", Icon: FiFacebook, href: "#" },
+  { id: "facebook", Icon: FiFacebook, href: "https://www.facebook.com/share/1LW5SEZYuP/" },
   { id: "x", Icon: FaXTwitter, href: "#" },
 ];
 
 export default function Footer() {
   return (
-    <footer className="pt-8 px-6 md:px-12 container mx-auto">
+    <footer className="pt-10 px-6 md:px-12 container mx-auto">
       <section className="flex flex-col gap-6 md:flex-row md:justify-between">
           
           {/* Left side: */}
@@ -58,7 +58,7 @@ export default function Footer() {
       </section>
 
       {/* Bottom */}
-      <div className="container mx-auto mt-6 border-t border-[#1A1A1A] py-6 px-4 text-sm text-[#1A1A1A] text-center md:flex md:justify-between md:items-center space-y-4 md:space-y-0">
+      <div className="container mx-auto mt-6 border-t border-[#4B598F80] py-6 px-4 text-xs text-[#1A1A1A] text-center md:flex md:justify-between md:items-center space-y-4 md:space-y-0">
         <p>
             © {new Date().getFullYear()} SewSphere. Building in public, one stitch
             at a time.

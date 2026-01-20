@@ -15,7 +15,7 @@ const sections = [
 
 export default function WhoItsFor() {
   return (
-    <section id="who" className="py-16 container mx-auto px-6">
+    <section id="who" className="py-8 container mx-auto px-6">
       <div className="flex items-center justify-center gap-4 mb-12">
         <span className="h-px w-24 bg-gray-300 py-[1px]" />
 
