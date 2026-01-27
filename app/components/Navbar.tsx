@@ -1,9 +1,9 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react" 
 import Link from "next/link"
+import { Menu, X } from "lucide-react" 
 import { cn } from "@/lib/utils"
-import { Menu, X } from "lucide-react"
 
 const NavLinks = [
     { name: "Why SewSphere", href: "#why" },
@@ -39,7 +39,6 @@ export default function Navbar() {
     }
 
 
-
     return (
         <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md px-6">
             <div className="container mx-auto px-4 h-16 flex items-center justify-between">
@@ -61,11 +60,10 @@ export default function Navbar() {
                                     "relative py-1 transition-colors",
                                     isActive
                                         ? "text-primary font-medium"
-                                        : "text-muted-foreground hover:text-foreground"
+                                        : "text-muted-foreground hover:text-primary"
                                 )}
                             >
                                 {link.name}
-
                                 {isActive && (
                                     <span className="absolute left-0 -bottom-[3px] h-[2px] w-full bg-primary" />
                                 )}

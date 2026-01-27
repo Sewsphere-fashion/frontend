@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 
 export default function Hero() {
     return (
-        <section className="container mx-auto gap-20 px-6 mb-12 mt-32 grid md:grid-cols-2 items-center">
+        <section className="container mx-auto gap-20 px-6 mb-12 mt-24 grid md:grid-cols-2 items-center">
             <div className="">
                 <h2 className=" text-[#181818] text-[32px] md:text-[5xl] lg:text-[64px] font-semibold mb-4 leading-tight">
                     Custom Fashion You Can Trust.
