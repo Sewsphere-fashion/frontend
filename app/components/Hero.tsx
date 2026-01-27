@@ -7,7 +7,7 @@ export default function Hero() {
                 <h2 className=" text-[#181818] text-[32px] md:text-[5xl] lg:text-[64px] font-semibold mb-4 leading-tight">
                     Custom Fashion You Can Trust.
                 </h2>
-                <p className="text-[#1A1A1A] text-[24px] mb-6">
+                <p className="text-[#1A1A1A] text-[18px] mb-6">
                     SewSphere connects clients with verified fashion designers for seamless
                      custom and ready-made outfits. -Nigeria First, Diaspora Next.
                 </p>
