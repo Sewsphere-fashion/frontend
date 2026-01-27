@@ -41,7 +41,7 @@ export default function Navbar() {
 
     return (
         <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md px-6">
-            <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+            <div className="container mx-auto px-4 h-20 flex items-center justify-between">
 
                 {/* Logo */}
                 <img src="/images/logo2.png" alt="SewSphere Logo" />
