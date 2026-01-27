@@ -1,31 +1,33 @@
-import { ArrowBigDownDash } from "lucide-react"
+import { ShieldCheck, MessageCircle, Package   } from "lucide-react"
+import { PiTreeStructureLight } from "react-icons/pi";
+
 
 const items = [
     {
-        icon: ArrowBigDownDash,
+        icon: ShieldCheck ,
         title: "Verified Fashion Designers",
-        desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores rerum repudiandae aperiam.",
+        desc: "Every designer is vetted and verified before joining the platform.",
     },
     {
-        icon: ArrowBigDownDash,
+        icon: MessageCircle ,
         title: "Clear measurements & brief",
-        desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores rerum repudiandae aperiam.",
+        desc: "Standardized forms ensure nothing gets lost in translation.",
     },
     {
-        icon: ArrowBigDownDash,
+        icon: PiTreeStructureLight,
         title: "Structured payments and timeline",
-        desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores rerum repudiandae aperiam.",
+        desc: "Milestone-based payments protect both clients and designers.",
     },
     {
-        icon: ArrowBigDownDash,
+        icon: Package,
         title: "Order tracking & delivery",
-        desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores rerum repudiandae aperiam.",
+        desc: "Know exactly where your order is at every stage of the process.",
     },
 ]
 
 export default function WhatWeBuilding() {
     return (
-        <section className="py-4">
+        <section id="what" className="py-8 px-6">
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-center gap-4 mb-12">
                     <span className="h-px w-24 bg-gray-300 py-[1px]" />
