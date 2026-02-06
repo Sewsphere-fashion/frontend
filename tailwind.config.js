@@ -8,7 +8,7 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
-				brand: '#D46A3C',
+				brand: '#C76B4a',
 				dark: '#1E1E1E',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
