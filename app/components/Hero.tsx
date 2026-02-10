@@ -31,7 +31,7 @@ export default function Hero() {
       </div>
 
       {/* Phone Mockups */}
-      <div className="flex border justify-center items-center gap-4 w-full lg:w-[500px] lg:h-[500px]">
+      <div className="flex justify-center items-center gap-4 w-full lg:w-[500px] lg:h-[500px]">
         <motion.img
           src="/images/mockImg1.svg"
           alt="Left mockup"

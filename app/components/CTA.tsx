@@ -1,6 +1,6 @@
 "use client";
-import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { useState, useEffect } from "react";
+import { ChevronDown, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function CTA() {
@@ -9,17 +9,53 @@ export default function CTA() {
     value: "",
     label: "Select your role",
   });
+  const [showToast, setShowToast] = useState(false);
 
   const options = [
     { value: "", label: "Select your role" },
     { value: "client", label: "Client or Customer" },
     { value: "designer", label: "Fashion Designer" },
-    { value: "others", label: "Others / Just Interested" },
+    { value: "general", label: "Others / Just Interested" },
   ];
+
+  const popupMessages = {
+    general: {
+      title: "You’re officially on the waitlist! 🎉",
+      message:
+        "Thanks for joining the SewSphere waitlist. Expect updates, sneak peaks, and early access as we get closer to launch. No spamming.",
+    },
+    client: {
+      title: "You’re on the SewSphere waitlist! 🎉",
+      message:
+        "You’ll be among the first to explore verified fashion professionals and order outfits with confidence. We’ll notify you as soon as we’re ready. No spamming.",
+    },
+    designer: {
+      title: "You’re on the SewSphere waitlist! 🎉",
+      message:
+        "You’ll be among the first designers to showcase your expertise and get recognised. We’ll notify you as soon as we’re ready. No spamming.",
+    },
+  };
+
+  const handleJoinWaitlist = () => {
+    setShowToast(true);
+  };
+
+  const getMessage = () => {
+    return popupMessages[selected.value] || popupMessages.general;
+  };
+
+  useEffect(() => {
+    if (showToast) {
+      const timer = setTimeout(() => {
+        setShowToast(false);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [showToast]);
   return (
     <section
       id="waitlist"
-      className="relative bg-[#1E0801] text-white py-12 text-center px-4 overflow-hidden"
+      className="relative bg-[#1E0801] text-white py-14 text-center px-4 overflow-hidden"
     >
       {/* BG Image */}
       <div className="absolute inset-0 bg-[url('/images/cta-bg.png')] bg-cover bg-center opacity-10 pointer-events-none"></div>
@@ -35,19 +71,19 @@ export default function CTA() {
         </div>
 
         <div>
-          <p >I am a.... ⟮Optional⟯</p>
+          <p>I am a.... ⟮Optional⟯</p>
           <div className="bg-white mx-auto w-full md:w-[35%] px-3 mt-2 rounded-lg">
             <div className="relative">
-              {/* Dropdown Button */}
+              {/* Dropdown */}
               <button
                 type="button"
                 onClick={() => setIsOpen(!isOpen)}
-                className="w-full py-3 pr-10 text-left outline-none text-gray-500"
+                className="w-full py-3 pr-10 text-left outline-none text-black"
               >
                 {selected.label}
 
                 <ChevronDown
-                  className={`absolute right-0 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 transition-transform ${
+                  className={`absolute right-0 top-1/2 -translate-y-1/2 w-5 h-5 text-black transition-transform ${
                     isOpen ? "rotate-180" : ""
                   }`}
                 />
@@ -55,7 +91,7 @@ export default function CTA() {
 
               {/* Dropdown Menu */}
               {isOpen && (
-                <div className="absolute z-50 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden">
+                <div className="absolute z-50 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg">
                   {options.map((option) => (
                     <button
                       key={option.value}
@@ -64,7 +100,7 @@ export default function CTA() {
                         setSelected(option);
                         setIsOpen(false);
                       }}
-                      className="w-full px-4 py-3 text-left text-gray-700 hover:bg-[#C76B4A] hover:text-white transition-colors"
+                      className="w-full px-4 py-2 text-left text-black hover:bg-[#C76B4A] hover:text-white transition-colors"
                     >
                       {option.label}
                     </button>
@@ -84,7 +120,11 @@ export default function CTA() {
               className="p-3 rounded-md text-black w-full flex-1 outline-none"
             />
 
-            <Button className="bg-brand p-6 rounded-xl w-full text-sm md:text-lg sm:w-auto md:w-[200px]  cursor-pointer whitespace-nowrap">
+            <Button
+              type="button"
+              onClick={handleJoinWaitlist}
+              className="bg-brand p-6 rounded-xl w-full text-sm md:text-lg sm:w-auto md:w-[200px]  cursor-pointer whitespace-nowrap"
+            >
               Join the Waitlist
             </Button>
           </div>
@@ -95,6 +135,32 @@ export default function CTA() {
           </p>
         </div>
       </main>
+
+      {/* Popup */}
+      {showToast && (
+        <div className="fixed top-16 left-1/2 -translate-x-1/2 z-50 px-4 w-full max-w-md">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full bg-[#87EDA1] px-8 py-3 relative animate-in fade-in zoom-in duration-200">
+
+            {/* Close Button */}
+            <button
+              onClick={() => setShowToast(false)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            {/* Content */}
+            <div className="text-center space-y-4">
+              <h3 className="text-xl font-medium text-[#0F766E]">
+                {getMessage().title}
+              </h3>
+              <p className="text-[#181818] text-sm leading-relaxed">
+                {getMessage().message}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
