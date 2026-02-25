@@ -9,7 +9,9 @@ export default function CTA() {
     value: "",
     label: "Select your role",
   });
+  const [email, setEmail] = useState("");
   const [showToast, setShowToast] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const options = [
     { value: "", label: "Select your role" },
@@ -36,8 +38,23 @@ export default function CTA() {
     },
   };
 
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   const handleJoinWaitlist = () => {
+    if (!email.trim()) {
+      setErrorMessage("Please enter your email address");
+      return;
+    }
+    if (!validateEmail(email)) {
+      setErrorMessage("Please enter a valid email address");
+      return;
+    }
+    setErrorMessage("");
     setShowToast(true);
+    setEmail("");
   };
 
   const getMessage = () => {
@@ -52,6 +69,13 @@ export default function CTA() {
       return () => clearTimeout(timer);
     }
   }, [showToast]);
+
+  useEffect(() => {
+    if (email.trim()) {
+      setErrorMessage("");
+    }
+  }, [email]);
+
   return (
     <section
       id="waitlist"
@@ -61,7 +85,7 @@ export default function CTA() {
       <div className="absolute inset-0 bg-[url('/images/cta-bg.png')] bg-cover bg-center opacity-10 pointer-events-none"></div>
 
       {/* CTA content */}
-      <main className="relative z-10 container mx-auto space-y-8">
+      <main className="relative z-10 container mx-auto space-y-6">
         <div className="container mx-auto">
           <h2 className="text-4xl font-semibold mb-4">Get Early Access</h2>
           <p className="md:w-[60%] md:text-xl mx-auto">
@@ -77,8 +101,11 @@ export default function CTA() {
               {/* Dropdown */}
               <button
                 type="button"
-                onClick={() => setIsOpen(!isOpen)}
-                className="w-full py-3 pr-10 text-left outline-none text-black"
+                onClick={() => !showToast && setIsOpen(!isOpen)}
+                disabled={showToast}
+                className={`w-full py-3 pr-10 text-left outline-none text-black ${
+                  showToast ? "opacity-50 cursor-not-allowed" : ""
+                }`}
               >
                 {selected.label}
 
@@ -90,7 +117,7 @@ export default function CTA() {
               </button>
 
               {/* Dropdown Menu */}
-              {isOpen && (
+              {isOpen && !showToast && (
                 <div className="absolute z-50 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg">
                   {options.map((option) => (
                     <button
@@ -112,12 +139,23 @@ export default function CTA() {
         </div>
 
         <div>
+          <div className="h-3 mb-2 md:w-[60%] mx-auto">
+            {errorMessage && (
+              <p className="text-red-500 text-sm animate-in fade-in duration-200">
+                {errorMessage}
+              </p>
+            )}
+          </div>
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3 bg-white w-full md:w-[60%] mx-auto mb-2 border border-brand rounded-xl px-2 py-1">
             <input
               suppressHydrationWarning
               type="email"
               placeholder="Enter your email"
-              className="p-3 rounded-md text-black w-full flex-1 outline-none"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className={`p-3 rounded-md text-black w-full flex-1 outline-none ${
+                errorMessage ? "border-2 border-red-500" : ""
+              }`}
             />
 
             <Button
@@ -139,8 +177,7 @@ export default function CTA() {
       {/* Popup */}
       {showToast && (
         <div className="fixed top-16 left-1/2 -translate-x-1/2 z-50 px-4 w-full max-w-md">
-          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full bg-[#87EDA1] px-8 py-3 relative animate-in fade-in zoom-in duration-200">
-
+          <div className="rounded-2xl shadow-2xl max-w-md w-full bg-[#87EDA1] px-8 py-3 relative animate-in fade-in zoom-in duration-200">
             {/* Close Button */}
             <button
               onClick={() => setShowToast(false)}

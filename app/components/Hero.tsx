@@ -5,9 +5,15 @@ import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
-    <section className="container mx-auto gap-20 px-6 mb-12 mt-24 grid md:grid-cols-2 items-center">
+    <section className="container mx-auto gap-20 px-6 md:px-8 mb-12 mt-24 grid md:grid-cols-2 items-center">
       {/* Text Section */}
-      <div className="">
+      <motion.div
+        className="text-center md:text-left pt-6 md:pt-0"
+        initial={{ x: -100, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 1, ease: "easeOut" }}
+      >
+        
         <h1 className="text-[#181818] text-[32px] sm:text-4xl md:text-5xl lg:text-[64px] font-semibold mb-4 leading-tight">
           Custom Fashion You Can Trust.
         </h1>
@@ -28,7 +34,7 @@ export default function Hero() {
             </Button>
           </a>
         </div>
-      </div>
+      </motion.div>
 
       {/* Phone Mockups */}
       <div className="flex justify-center items-center gap-4 w-full lg:w-[500px] lg:h-[500px]">

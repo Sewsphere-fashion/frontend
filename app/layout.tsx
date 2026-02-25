@@ -1,9 +1,23 @@
 import type { Metadata } from 'next'
-import "./globals.css";
+import { Space_Grotesk, Inter } from 'next/font/google'
+import './globals.css'
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-space',
+})
+
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-inter',
+})
 
 export const metadata: Metadata = {
   title: 'SewSphere',
-  description: 'A fashion platform connecting clients with verified designers for custom and ready-made outfits. Nigeria first, diaspora next.',
+  description:
+    'A fashion platform connecting clients with verified designers for custom and ready-made outfits. Nigeria first, diaspora next.',
 }
 
 export default function RootLayout({
@@ -12,8 +26,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className="antialiased">{children}</body>
+    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable}`}>
+      <body className="antialiased">
+        {children}
+      </body>
     </html>
   )
 }
