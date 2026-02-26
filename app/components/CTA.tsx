@@ -181,7 +181,7 @@ export default function CTA() {
               <Button
                 type="submit"
                 disabled={isLoading}
-                className="bg-brand p-6 rounded-xl w-full text-sm md:text-lg sm:w-auto md:w-[200px] cursor-pointer whitespace-nowrap disabled:opacity-70 disabled:cursor-not-allowed"
+                className="bg-brand p-6 rounded-xl w-full text-sm sm:w-auto md:w-[200px] cursor-pointer whitespace-nowrap disabled:opacity-70 disabled:cursor-not-allowed"
               >
                 {isLoading ? "Joining..." : "Join the Waitlist"}
               </Button>
