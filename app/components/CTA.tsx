@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { ChevronDown, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { joinWaitlist } from "@/lib/axios";
 
 export default function CTA() {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,6 +13,7 @@ export default function CTA() {
   const [email, setEmail] = useState("");
   const [showToast, setShowToast] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const options = [
     { value: "", label: "Select your role" },
@@ -22,19 +24,19 @@ export default function CTA() {
 
   const popupMessages = {
     general: {
-      title: "You’re officially on the waitlist! 🎉",
+      title: "You're officially on the waitlist! 🎉",
       message:
         "Thanks for joining the SewSphere waitlist. Expect updates, sneak peaks, and early access as we get closer to launch. No spamming.",
     },
     client: {
-      title: "You’re on the SewSphere waitlist! 🎉",
+      title: "You're on the SewSphere waitlist! 🎉",
       message:
-        "You’ll be among the first to explore verified fashion professionals and order outfits with confidence. We’ll notify you as soon as we’re ready. No spamming.",
+        "You'll be among the first to explore verified fashion professionals and order outfits with confidence. We'll notify you as soon as we're ready. No spamming.",
     },
     designer: {
-      title: "You’re on the SewSphere waitlist! 🎉",
+      title: "You're on the SewSphere waitlist! 🎉",
       message:
-        "You’ll be among the first designers to showcase your expertise and get recognised. We’ll notify you as soon as we’re ready. No spamming.",
+        "You'll be among the first designers to showcase your expertise and get recognised. We'll notify you as soon as we're ready. No spamming.",
     },
   };
 
@@ -43,7 +45,9 @@ export default function CTA() {
     return emailRegex.test(email);
   };
 
-  const handleJoinWaitlist = () => {
+  const handleJoinWaitlist = async (e: React.FormEvent) => {
+    e.preventDefault();
+
     if (!email.trim()) {
       setErrorMessage("Please enter your email address");
       return;
@@ -52,13 +56,26 @@ export default function CTA() {
       setErrorMessage("Please enter a valid email address");
       return;
     }
-    setErrorMessage("");
-    setShowToast(true);
-    setEmail("");
+
+    try {
+      setIsLoading(true);
+      setErrorMessage("");
+      await joinWaitlist(email, selected.value || "general");
+      setShowToast(true);
+      setEmail("");
+      setSelected({ value: "", label: "Select your role" });
+    } catch (error) {
+      setErrorMessage("Something went wrong. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const getMessage = () => {
-    return popupMessages[selected.value] || popupMessages.general;
+    return (
+      popupMessages[selected.value as keyof typeof popupMessages] ||
+      popupMessages.general
+    );
   };
 
   useEffect(() => {
@@ -94,84 +111,88 @@ export default function CTA() {
           </p>
         </div>
 
-        <div>
-          <p>I am a.... ⟮Optional⟯</p>
-          <div className="bg-white mx-auto w-full md:w-[35%] px-3 mt-2 rounded-lg">
-            <div className="relative">
-              {/* Dropdown */}
-              <button
-                type="button"
-                onClick={() => !showToast && setIsOpen(!isOpen)}
-                disabled={showToast}
-                className={`w-full py-3 pr-10 text-left outline-none text-black ${
-                  showToast ? "opacity-50 cursor-not-allowed" : ""
-                }`}
-              >
-                {selected.label}
-
-                <ChevronDown
-                  className={`absolute right-0 top-1/2 -translate-y-1/2 w-5 h-5 text-black transition-transform ${
-                    isOpen ? "rotate-180" : ""
+        <form onSubmit={handleJoinWaitlist} noValidate>
+          {/* Role Dropdown */}
+          <div>
+            <p>I am a.... ⟮Optional⟯</p>
+            <div className="bg-white mx-auto w-full md:w-[35%] px-3 mt-2 rounded-lg">
+              <div className="relative">
+                <button
+                  type="button"
+                  onClick={() => !showToast && setIsOpen(!isOpen)}
+                  disabled={showToast || isLoading}
+                  className={`w-full py-3 pr-10 text-left outline-none text-black ${
+                    showToast || isLoading ? "opacity-50 cursor-not-allowed" : ""
                   }`}
-                />
-              </button>
+                >
+                  {selected.label}
 
-              {/* Dropdown Menu */}
-              {isOpen && !showToast && (
-                <div className="absolute z-50 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg">
-                  {options.map((option) => (
-                    <button
-                      key={option.value}
-                      type="button"
-                      onClick={() => {
-                        setSelected(option);
-                        setIsOpen(false);
-                      }}
-                      className="w-full px-4 py-2 text-left text-black hover:bg-[#C76B4A] hover:text-white transition-colors"
-                    >
-                      {option.label}
-                    </button>
-                  ))}
-                </div>
-              )}
+                  <ChevronDown
+                    className={`absolute right-0 top-1/2 -translate-y-1/2 w-5 h-5 text-black transition-transform ${
+                      isOpen ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+
+                {/* Dropdown Menu */}
+                {isOpen && !showToast && (
+                  <div className="absolute z-50 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg">
+                    {options.map((option) => (
+                      <button
+                        key={option.value}
+                        type="button"
+                        onClick={() => {
+                          setSelected(option);
+                          setIsOpen(false);
+                        }}
+                        className="w-full px-4 py-2 text-left text-black hover:bg-[#C76B4A] hover:text-white transition-colors"
+                      >
+                        {option.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           </div>
-        </div>
 
-        <div>
-          <div className="h-3 mb-2 md:w-[60%] mx-auto">
-            {errorMessage && (
-              <p className="text-red-500 text-sm animate-in fade-in duration-200">
-                {errorMessage}
-              </p>
-            )}
+          {/* Email Input + Submit */}
+          <div className="mt-6">
+            <div className="h-3 mb-2 md:w-[60%] mx-auto">
+              {errorMessage && (
+                <p className="text-red-500 text-sm animate-in fade-in duration-200">
+                  {errorMessage}
+                </p>
+              )}
+            </div>
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 bg-white w-full md:w-[60%] mx-auto mb-2 border border-brand rounded-xl px-2 py-1">
+              <input
+                suppressHydrationWarning
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={isLoading}
+                className={`p-3 rounded-md text-black w-full flex-1 outline-none disabled:opacity-50 ${
+                  errorMessage ? "border-2 border-red-500" : ""
+                }`}
+              />
+
+              <Button
+                type="submit"
+                disabled={isLoading}
+                className="bg-brand p-6 rounded-xl w-full text-sm md:text-lg sm:w-auto md:w-[200px] cursor-pointer whitespace-nowrap disabled:opacity-70 disabled:cursor-not-allowed"
+              >
+                {isLoading ? "Joining..." : "Join the Waitlist"}
+              </Button>
+            </div>
+
+            <p className="md:w-[60%] mx-auto">
+              We respect your privacy. No spam, just meaningful updates about
+              SewSphere.
+            </p>
           </div>
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 bg-white w-full md:w-[60%] mx-auto mb-2 border border-brand rounded-xl px-2 py-1">
-            <input
-              suppressHydrationWarning
-              type="email"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className={`p-3 rounded-md text-black w-full flex-1 outline-none ${
-                errorMessage ? "border-2 border-red-500" : ""
-              }`}
-            />
-
-            <Button
-              type="button"
-              onClick={handleJoinWaitlist}
-              className="bg-brand p-6 rounded-xl w-full text-sm md:text-lg sm:w-auto md:w-[200px]  cursor-pointer whitespace-nowrap"
-            >
-              Join the Waitlist
-            </Button>
-          </div>
-
-          <p className="md:w-[60%] mx-auto">
-            We respect your privacy. No spam, just meaningful updates about
-            SewSphere.
-          </p>
-        </div>
+        </form>
       </main>
 
       {/* Popup */}
