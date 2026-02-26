@@ -8,7 +8,7 @@ const api = axios.create({
 });
 
 export const joinWaitlist = async (email: string, role: string) => {
-  const response = await api.post("/api/waitlist", { email, role });
+  const response = await api.post("/waitlist", { email, role });
   return response.data;
 };
 
