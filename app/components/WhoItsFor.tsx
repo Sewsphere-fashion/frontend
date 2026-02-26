@@ -19,9 +19,9 @@ export default function WhoItsFor() {
       <div className="flex items-center justify-center gap-4 mb-12">
         <span className="h-px w-24 bg-gray-300 py-[1px]" />
 
-        <h3 className="text-2xl font-medium text-center whitespace-nowrap">
+        <h2 className="text-2xl font-medium text-center whitespace-nowrap">
           Who It's For
-        </h3>
+        </h2>
 
         <span className="h-px w-24 bg-gray-300 py-[1px]" />
       </div>
@@ -33,6 +33,7 @@ export default function WhoItsFor() {
             className="mb-12 relative h-[400px] sm:h-[370px] overflow-hidden rounded-lg border border-[#C76B4A] shadow-[0_8px_16px_0_rgba(235,157,128,0.25)]"
           >
             <video
+              title="Fashion designer creating custom clothing"
               autoPlay
               loop
               muted
@@ -50,9 +51,9 @@ export default function WhoItsFor() {
               <h2 className="text-primary text-2xl font-medium ">
                 {section.title}
               </h2>
-              <p className="text-white text-[34px] sm:text-[40px] md:text-[46px] leading-tight font-semibold md:w-[80%]">
+              <h2 className="text-white text-[34px] sm:text-[40px] md:text-[46px] leading-tight font-semibold md:w-[80%]">
                 {section.text}
-              </p>
+              </h2>
               <p className="text-[#F5EFE6] text-[20px] leading-tight">
                 {section.desc}
               </p>
