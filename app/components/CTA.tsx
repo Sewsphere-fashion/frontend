@@ -19,11 +19,11 @@ export default function CTA() {
     { value: "", label: "Select your role" },
     { value: "client", label: "Client or Customer" },
     { value: "designer", label: "Fashion Designer" },
-    { value: "general", label: "Others / Just Interested" },
+    { value: "interested", label: "Others / Just Interested" },
   ];
 
   const popupMessages = {
-    general: {
+    interested: {
       title: "You're officially on the waitlist! 🎉",
       message:
         "Thanks for joining the SewSphere waitlist. Expect updates, sneak peaks, and early access as we get closer to launch. No spamming.",
@@ -60,7 +60,11 @@ export default function CTA() {
     try {
       setIsLoading(true);
       setErrorMessage("");
-      await joinWaitlist(email, selected.value || "general");
+      const response = await joinWaitlist(
+        email,
+        selected.value || "interested",
+      );
+      console.log("Response:", response);
       setShowToast(true);
       setEmail("");
       setSelected({ value: "", label: "Select your role" });
@@ -68,7 +72,11 @@ export default function CTA() {
       console.log("Status:", error.response?.status);
       console.log("Data:", error.response?.data);
       console.log("Message:", error.message);
+      if (error.response?.data?.message) {
+        setErrorMessage(error.response.data.message);
+      } else {
       setErrorMessage("Something went wrong. Please try again.");
+    }
     } finally {
       setIsLoading(false);
     }
@@ -77,7 +85,7 @@ export default function CTA() {
   const getMessage = () => {
     return (
       popupMessages[selected.value as keyof typeof popupMessages] ||
-      popupMessages.general
+      popupMessages.interested
     );
   };
 
@@ -85,7 +93,7 @@ export default function CTA() {
     if (showToast) {
       const timer = setTimeout(() => {
         setShowToast(false);
-      }, 5000);
+      }, 15000);
       return () => clearTimeout(timer);
     }
   }, [showToast]);
