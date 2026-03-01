@@ -60,23 +60,18 @@ export default function CTA() {
     try {
       setIsLoading(true);
       setErrorMessage("");
-      const response = await joinWaitlist(
-        email,
-        selected.value || "interested",
-      );
-      console.log("Response:", response);
+      await joinWaitlist(email, selected.value || "interested");
       setShowToast(true);
       setEmail("");
       setSelected({ value: "", label: "Select your role" });
     } catch (error: any) {
-      console.log("Status:", error.response?.status);
-      console.log("Data:", error.response?.data);
-      console.log("Message:", error.message);
-      if (error.response?.data?.message) {
+      if (error.response?.status === 429) {
+        setErrorMessage(error.response.data);
+      } else if (error.response?.data?.message) {
         setErrorMessage(error.response.data.message);
       } else {
-      setErrorMessage("Something went wrong. Please try again.");
-    }
+        setErrorMessage("Something went wrong. Please try again.");
+      }
     } finally {
       setIsLoading(false);
     }
@@ -93,7 +88,7 @@ export default function CTA() {
     if (showToast) {
       const timer = setTimeout(() => {
         setShowToast(false);
-      }, 15000);
+      }, 5000);
       return () => clearTimeout(timer);
     }
   }, [showToast]);
