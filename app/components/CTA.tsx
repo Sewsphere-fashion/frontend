@@ -64,7 +64,10 @@ export default function CTA() {
       setShowToast(true);
       setEmail("");
       setSelected({ value: "", label: "Select your role" });
-    } catch (error) {
+    } catch (error: any) {
+      console.log("Status:", error.response?.status);
+      console.log("Data:", error.response?.data);
+      console.log("Message:", error.message);
       setErrorMessage("Something went wrong. Please try again.");
     } finally {
       setIsLoading(false);
@@ -122,7 +125,9 @@ export default function CTA() {
                   onClick={() => !showToast && setIsOpen(!isOpen)}
                   disabled={showToast || isLoading}
                   className={`w-full py-3 pr-10 text-left outline-none text-black ${
-                    showToast || isLoading ? "opacity-50 cursor-not-allowed" : ""
+                    showToast || isLoading
+                      ? "opacity-50 cursor-not-allowed"
+                      : ""
                   }`}
                 >
                   {selected.label}
