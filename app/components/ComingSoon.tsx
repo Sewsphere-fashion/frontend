@@ -11,7 +11,7 @@ export default function CountdownPage() {
   });
 
   useEffect(() => {
-    const targetDate = new Date("2026-03-04T23:59:59");
+    const targetDate = new Date("2026-03-08T23:59:59");
 
     const timer = setInterval(() => {
       const now = new Date().getTime();
@@ -84,7 +84,7 @@ export default function CountdownPage() {
           animation: dotPulse3 3s infinite;
         }
       `}</style>
-      <div className="min-h-screen bg-white flex items-center justify-center p-4">
+      <div className="min-h-screen bg-white flex items-center justify-center p-4 font-space">
         <div className="max-w-4xl w-full text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-[#181818] mb-12">
             We're Coming Soon
@@ -95,7 +95,7 @@ export default function CountdownPage() {
             </span>
           </h1>
 
-          <div className="flex justify-center gap-4 md:gap-6 mb-12">
+          <div className="flex justify-center gap-4 md:gap-6 mb-12 font-inter">
             {timeUnits.map((unit, index) => (
               <div key={index} className="flex flex-col items-center">
                 <div className="relative bg-[#2B2B2B] text-white rounded-lg md:rounded-2xl w-20 h-20 md:w-28 md:h-28 flex items-center justify-center shadow-lg overflow-hidden ">
@@ -119,7 +119,7 @@ export default function CountdownPage() {
 
           <p className="text-[#525252] text-lg md:text-xl">
             Exciting experience coming from{" "}
-            <span className="font-bold">SewSphere</span>, stay glued.
+            <span className="font-bold text-brand">SewSphere</span>, stay glued.
           </p>
         </div>
       </div>
