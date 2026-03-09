@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://backend-v1-5lq9.onrender.com/api",
+  baseURL: "https://api.sewsphere.co",
   headers: {
     "Content-Type": "application/json",
   },
