@@ -15,7 +15,7 @@ const socialLinks = [
     Icon: FaInstagram,
     href: "https://www.instagram.com/sewsphere_official?igsh=MTRuaHZrNWV6ZzRiOA==",
   },
-  { id: "tiktok", Icon: FaTiktok, href: "#" },
+  { id: "tiktok", Icon: FaTiktok, href: "tiktok.com/@sewspherebrand" },
   {
     id: "facebook",
     Icon: FiFacebook,

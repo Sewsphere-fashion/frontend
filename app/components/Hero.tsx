@@ -3,17 +3,27 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 
+const scrollToSection = (id: string) => {
+  const element = document.getElementById(id);
+
+  if (element) {
+    element.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }
+};
+
 export default function Hero() {
   return (
     <section className="container mx-auto gap-20 px-6 md:px-8 mb-12 mt-24 grid md:grid-cols-2 items-center">
       {/* Text Section */}
       <motion.div
-        className="text-center md:text-left pt-6 md:pt-0"
+        className="text-center md:text-left pt-6 md:pt-0 lg:space-y-8"
         initial={{ x: -100, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 1, ease: "easeOut" }}
       >
-        
         <h1 className="text-[#181818] text-[32px] sm:text-4xl md:text-5xl lg:text-[64px] font-semibold mb-4 leading-tight">
           Custom Fashion You Can Trust.
         </h1>
@@ -22,17 +32,19 @@ export default function Hero() {
           seamless custom and ready-made outfits. Nigeria First, Diaspora Next.
         </p>
         <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
-          <a href="#waitlist">
-            <Button className="bg-primary text-white px-8 py-6 rounded-md w-full">
-              Join the Waitlist
-            </Button>
-          </a>
+          <Button
+            onClick={() => scrollToSection("waitlist")}
+            className="bg-primary text-white px-8 py-6 rounded-lg w-full lg:w-[235px]"
+          >
+            Join the Waitlist
+          </Button>
 
-          <a href="#how">
-            <Button className="border border-primary text-primary bg-transparent hover:text-white px-8 py-6 w-full rounded-md">
-              See How It Works
-            </Button>
-          </a>
+          <Button
+            onClick={() => scrollToSection("how")}
+            className="border border-primary text-primary bg-transparent hover:text-white px-8 py-6 w-full rounded-lg lg:w-[235px]"
+          >
+            See How It Works
+          </Button>
         </div>
       </motion.div>
 
