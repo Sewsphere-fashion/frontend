@@ -19,7 +19,7 @@ export default function Hero() {
         </h1>
         <p className="text-[#1A1A1A] text-[18px] mb-6">
           SewSphere connects clients with verified fashion designers for
-          seamless custom and ready-made outfits. -Nigeria First, Diaspora Next.
+          seamless custom and ready-made outfits. Nigeria First, Diaspora Next.
         </p>
         <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
           <a href="#waitlist">
