@@ -11,15 +11,15 @@ import WhySection from "./components/WhySection";
 export default function Home() {
   return (
     <>
-      {/* <ComingSoon /> */}
-      <Navbar />
+      <ComingSoon />
+      {/* <Navbar />
       <Hero />
       <WhySection />
       <WhatWeBuilding />
       <HowItWorks />
       <WhoItsFor />
       <CTA />
-      <Footer />
+      <Footer /> */}
     </>
   );
 }
