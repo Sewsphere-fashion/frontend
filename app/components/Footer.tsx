@@ -85,10 +85,10 @@ export default function Footer() {
           <div className="flex flex-col gap-4">
             <h4 className="font-bold text-brand text-2xl">Connect With Us</h4>
             <a
-              href="mailto:hello@sewsphere.com"
+              href="mailto:sewsphere@gmail.com"
               className="flex gap-2 items-center hover:text-[#C76B4A] hover:underline transition-colors duration-300"
             >
-              <CiMail /> hello@sewsphere.com
+              <CiMail /> sewsphere@gmail.com
             </a>
           </div>
         </div>
